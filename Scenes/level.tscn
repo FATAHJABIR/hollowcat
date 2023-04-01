@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_n4kc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
-size = Vector2(64, 63)
+size = Vector2(60, 57)
 
 [sub_resource type="Gradient" id="Gradient_0x00t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -109,6 +109,7 @@ speed = 400.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hjrgk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
