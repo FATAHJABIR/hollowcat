@@ -3,9 +3,6 @@ extends Body
 
 enum EPlayer { Human, Ghost }
 
-signal health_updated(life)
-signal killed()
-
 
 @export var player: EPlayer
 @export var bullet_speed: float

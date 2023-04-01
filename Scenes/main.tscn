@@ -28,6 +28,10 @@ render_target_update_mode = 4
 
 [node name="Level" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_5u3lo")]
 
+[node name="Player1" parent="HBoxContainer/SubViewportContainer/SubViewport/Level" index="1"]
+player = null
+max_life = null
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Level/Player1" index="2"]
 remote_path = NodePath("../../../Camera2D")
 
