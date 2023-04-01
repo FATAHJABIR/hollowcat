@@ -66,3 +66,7 @@ func _on_monster_detector_body_entered(body):
 		damage(1)
 		print(life)
 
+
+
+func _on_immunity_timer_timeout():
+	$AnimationPlayer.play("rest")
