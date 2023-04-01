@@ -5,5 +5,5 @@ var bullet_owner: Body
 
 func _on_body_entered(body):
 	print("kiiuh")
-	body.life -= owner.damage
+	body.life -= bullet_owner.damage
 	queue_free()

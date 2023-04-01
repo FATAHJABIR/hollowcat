@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_n4kc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
-size = Vector2(64, 63)
+size = Vector2(60, 57)
 
 [sub_resource type="Gradient" id="Gradient_0x00t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -27,6 +27,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oulpl"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_icqsm"]
@@ -98,18 +113,20 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trro"]
-size = Vector2(74, 64)
+size = Vector2(64, 64)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player1" type="CharacterBody2D" parent="."]
 visible = false
 position = Vector2(254, 292)
+collision_mask = 4
 script = ExtResource("1_08klv")
 speed = 400.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hjrgk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
@@ -122,9 +139,10 @@ libraries = {
 }
 
 [node name="monsterDetector" type="Area2D" parent="Player1"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/monsterDetector"]
-position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="Player1"]
@@ -133,6 +151,8 @@ autostart = true
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(800, 285)
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("2_u6sgo")
 max_distance_between_players = 500.0
 player = 1
