@@ -37,8 +37,9 @@ func get_direction():
 
 func _ready():
 	player1 = get_node("../Player1")
-	player2 = get_node("../Player2")
-	#	graphics.draw(sprites.heart_filled, 10, 10)
+	player2 = get_node("../Player2") 
+	connect("health_updated", get_parent().get_parent().get_node("UI/Life").on_player_life_change)
+	emit_signal("health_updated", max_life)
 	
 
 func _process(delta):
@@ -59,9 +60,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_monster_detector_body_entered(body):
-	print("onaojnawd")
 	if body is Monster:
-		print("help")
 		effects_animations.play("Red")
 		effects_animations.queue("flash")
 		damage(1)
