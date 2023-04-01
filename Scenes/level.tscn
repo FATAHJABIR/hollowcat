@@ -19,7 +19,6 @@ gradient = SubResource("Gradient_0x00t")
 position = Vector2(254, 292)
 script = ExtResource("1_08klv")
 speed = 400.0
-life = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
@@ -35,7 +34,6 @@ script = ExtResource("2_u6sgo")
 max_distance_between_players = 500.0
 speed = 400.0
 player = 1
-life = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
@@ -48,3 +46,5 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 texture = SubResource("GradientTexture2D_k6ldq")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_n4kc6")]
+
+[connection signal="input_event" from="Player1" to="Player1" method="_on_input_event"]

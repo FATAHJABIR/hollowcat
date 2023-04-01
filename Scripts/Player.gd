@@ -3,17 +3,20 @@ extends CharacterBody2D
 
 enum EPlayer { Human, Ghost }
 
+signal health_updated(life)
+signal killed()
+
 @export var speed: float
 @export var player: EPlayer
-@export var life: int
 
+@export var max_life = 3
+@onready var life = max_life : set = _set_life
+ 
 
 var player1: Player
 var player2: Player
 
-func _ready():
-	player1 = get_node("../Player1")
-	player2 = get_node("../Player2")
+
 
 func get_direction():
 	var direction: Vector2
@@ -29,6 +32,34 @@ func get_direction():
 	
 	return direction
 
+func _ready():
+	if player == EPlayer.Human:
+		player1 = self
+	elif player == EPlayer.Ghost:
+		player2 = self
+
 func _process(delta):
 	velocity = get_direction() * speed
 	move_and_slide()
+	
+	
+
+func damage(amount):
+	_set_life(life-amount)
+
+func kill():
+	pass
+
+func _set_life(value):
+	var prev_life = life
+	life = clamp(value, 0, max_life)
+	if life != prev_life:
+		emit_signal("life updated", life)
+		if life == 0:
+			kill()
+			emit_signal("killed")
+	
+
+
+func _on_input_event(viewport, event, shape_idx):
+	pass
