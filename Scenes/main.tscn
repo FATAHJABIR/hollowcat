@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcgknl1nk1213"]
+[gd_scene load_steps=6 format=3 uid="uid://dcgknl1nk1213"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
+[ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="2_7hx7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(64, 63)
@@ -44,3 +45,5 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player2"]
 texture = SubResource("GradientTexture2D_k6ldq")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_7hx7q")]
