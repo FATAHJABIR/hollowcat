@@ -1,17 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcgknl1nk1213"]
+[gd_scene load_steps=14 format=3 uid="uid://dcgknl1nk1213"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
 [ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_n4kc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
-size = Vector2(60, 57)
+size = Vector2(64, 63)
 
 [sub_resource type="Gradient" id="Gradient_0x00t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_k6ldq"]
 gradient = SubResource("Gradient_0x00t")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trro"]
+size = Vector2(74, 64)
+
+[sub_resource type="Animation" id="Animation_yuvqn"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_gqnvb"]
 resource_name = "Red"
@@ -31,6 +37,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oulpl"]
 resource_name = "death"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,22 +66,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_oulpl"]
-resource_name = "death"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_wsfca"]
@@ -106,44 +97,33 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3856b"]
 _data = {
+"RESET": SubResource("Animation_yuvqn"),
 "Red": SubResource("Animation_gqnvb"),
 "death": SubResource("Animation_oulpl"),
 "flash": SubResource("Animation_icqsm"),
 "rest": SubResource("Animation_wsfca")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trro"]
-size = Vector2(64, 64)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Player1" type="CharacterBody2D" parent="."]
 visible = false
 position = Vector2(254, 292)
-collision_mask = 4
 script = ExtResource("1_08klv")
-bullet_speed = 1000.0
 speed = 400.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hjrgk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player1"]
 texture = SubResource("GradientTexture2D_k6ldq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player1"]
-libraries = {
-"": SubResource("AnimationLibrary_3856b")
-}
-
 [node name="monsterDetector" type="Area2D" parent="Player1"]
-collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/monsterDetector"]
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="Player1"]
@@ -152,12 +132,10 @@ autostart = true
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(800, 285)
-collision_layer = 2
-collision_mask = 0
 script = ExtResource("2_u6sgo")
 max_distance_between_players = 500.0
 player = 1
-bullet_speed = 1000.0
+bullet_speed = 100.0
 speed = 400.0
 metadata/_edit_group_ = true
 
@@ -173,6 +151,13 @@ texture = SubResource("GradientTexture2D_k6ldq")
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_n4kc6")]
 position = Vector2(517, 296)
 speed = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Player1")
+autoplay = "rest"
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
 
 [connection signal="killed" from="Player1" to="Player1" method="_on_killed"]
 [connection signal="body_entered" from="Player1/monsterDetector" to="Player1" method="_on_monster_detector_body_entered"]

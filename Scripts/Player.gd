@@ -38,7 +38,7 @@ func get_direction():
 func _ready():
 	player1 = get_node("../Player1")
 	player2 = get_node("../Player2")
-	$AnimationPlayer.play("rest")
+
 	
 
 func _process(delta):
@@ -62,16 +62,17 @@ func _on_monster_detector_body_entered(body):
 	print("onaojnawd")
 	if body is Monster:
 		print("help")
-		$AnimationPlayer.play("Red")
-		$AnimationPlayer.queue("flash")
+		effects_animations.play("Red")
+		effects_animations.queue("flash")
 		damage(1)
 		print(life)
 
 
 
 func _on_immunity_timer_timeout():
-	$AnimationPlayer.play("rest")
+	effects_animations.play("rest")
 
 
 func _on_killed():
-	$AnimationPlayer.play("death")
+	effects_animations.play("death")
+	get_tree().reload_current_scene
