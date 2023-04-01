@@ -9,8 +9,7 @@ enum EPlayer { Human, Ghost }
 
 var bullet = load("res://Scenes/bullet.tscn")
  
-
-
+var rifu = max_life
 
 
  
@@ -23,6 +22,7 @@ var player2: Player
 func get_direction():
 	var direction: Vector2
 	
+
 	if player == EPlayer.Human:
 		direction.x = Input.get_axis("left_1", "right_1")
 		direction.y = Input.get_axis("up_1", "down_1")  
@@ -37,9 +37,10 @@ func get_direction():
 func _ready():
 	player1 = get_node("../Player1")
 	player2 = get_node("../Player2")
+	
 
 func _process(delta):
-	if Input.is_action_just_pressed("attack_1"):
+	if Input.is_action_just_pressed("attack_1"):  
 		var new_bullet: Bullet = bullet.instantiate()
 		new_bullet.linear_velocity = get_direction().normalized() * bullet_speed
 		
@@ -54,6 +55,11 @@ func _physics_process(delta):
 
 	
 
+func _on_monster_detector_body_entered(body):
+	if body is Monster:
+		print("help")
+		$AnimationPlayer.play("Red")
+		$AnimationPlayer.queue("flash")
+		damage(1)
+		print(life)
 
-func _on_input_event(viewport, event, shape_idx):
-	pass
