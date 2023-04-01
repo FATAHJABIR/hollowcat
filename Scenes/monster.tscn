@@ -11,6 +11,7 @@ radius = 423.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_4foc6")
+life = null
 speed = null
 metadata/_edit_group_ = true
 

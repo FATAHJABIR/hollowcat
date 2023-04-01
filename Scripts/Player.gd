@@ -11,6 +11,8 @@ signal killed()
 @export var bullet_speed: float
 
 var bullet = load("res://Scenes/bullet.tscn")
+ 
+
 
 
 
@@ -36,10 +38,8 @@ func get_direction():
 	return direction
 
 func _ready():
-	if player == EPlayer.Human:
-		player1 = self
-	elif player == EPlayer.Ghost:
-		player2 = self
+	player1 = get_node("../Player1")
+	player2 = get_node("../Player2")
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack_1"):
@@ -50,6 +50,7 @@ func _process(delta):
 func _physics_process(delta):
 	velocity = get_direction() * speed
 	move_and_slide()
+
 	
 	
 

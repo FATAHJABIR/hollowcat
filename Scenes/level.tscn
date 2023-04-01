@@ -18,6 +18,7 @@ gradient = SubResource("Gradient_0x00t")
 [node name="Player1" type="CharacterBody2D" parent="."]
 position = Vector2(254, 292)
 script = ExtResource("1_08klv")
+bullet_speed = 100.0
 speed = 400.0
 metadata/_edit_group_ = true
 
