@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcgknl1nk1213"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
+
+[sub_resource type="Gradient" id="Gradient_0x00t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k6ldq"]
+gradient = SubResource("Gradient_0x00t")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
+size = Vector2(64, 63)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(525, 317)
+texture = SubResource("GradientTexture2D_k6ldq")
+
+[node name="Player1" type="CharacterBody2D" parent="."]
+position = Vector2(254, 292)
+script = ExtResource("1_08klv")
+speed = 400.0
+life = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_hjrgk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1"]
+texture = SubResource("GradientTexture2D_k6ldq")
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+position = Vector2(800, 285)
+script = ExtResource("1_08klv")
+speed = 400.0
+player = 1
+life = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_hjrgk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2"]
+texture = SubResource("GradientTexture2D_k6ldq")
