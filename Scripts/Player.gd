@@ -38,6 +38,7 @@ func get_direction():
 func _ready():
 	player1 = get_node("../Player1")
 	player2 = get_node("../Player2")
+	$AnimationPlayer.play("rest")
 	
 
 func _process(delta):
@@ -70,3 +71,7 @@ func _on_monster_detector_body_entered(body):
 
 func _on_immunity_timer_timeout():
 	$AnimationPlayer.play("rest")
+
+
+func _on_killed():
+	$AnimationPlayer.play("death")

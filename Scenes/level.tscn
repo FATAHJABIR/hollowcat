@@ -48,6 +48,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oulpl"]
 resource_name = "death"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -102,6 +103,7 @@ size = Vector2(74, 64)
 [node name="Node2D" type="Node2D"]
 
 [node name="Player1" type="CharacterBody2D" parent="."]
+visible = false
 position = Vector2(254, 292)
 script = ExtResource("1_08klv")
 speed = 400.0
@@ -151,5 +153,6 @@ texture = SubResource("GradientTexture2D_k6ldq")
 position = Vector2(517, 296)
 speed = 100.0
 
+[connection signal="killed" from="Player1" to="Player1" method="_on_killed"]
 [connection signal="body_entered" from="Player1/monsterDetector" to="Player1" method="_on_monster_detector_body_entered"]
 [connection signal="timeout" from="Player1/immunityTimer" to="Player1" method="_on_immunity_timer_timeout"]
