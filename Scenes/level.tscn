@@ -97,7 +97,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trro"]
-size = Vector2(74, 64)
+size = Vector2(64, 64)
 
 [node name="Node2D" type="Node2D"]
 
@@ -125,7 +125,6 @@ libraries = {
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/monsterDetector"]
-position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="Player2" type="CharacterBody2D" parent="."]
