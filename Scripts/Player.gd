@@ -11,7 +11,7 @@ func get_direction():
 	
 	if player == EPlayer.Human:
 		direction.x = Input.get_axis("left_1", "right_1")
-		direction.y = Input.get_axis("up_1", "down_1")
+		direction.y = Input.get_axis("up_1", "down_1")  
 	elif player == EPlayer.Ghost:
 		direction.x = Input.get_axis("left_2", "right_2")
 		direction.y = Input.get_axis("up_2", "down_2")

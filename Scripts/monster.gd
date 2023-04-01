@@ -1,22 +1,28 @@
 extends CharacterBody2D
+class_name Player
+
+@onready var player = get_parent().get_node("Player1")
+@export var speed = 40
+var go = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
 
-const SPEED = 100.0
-export var speed = 100 
-var player_position
-var target_position
-# Get a reference to the player. It's likely different in your project
-onready var player = get_parent().get_node("Player")
- 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
-	# Set player_position to the position of the player node
-	player_position = player.position
-	# Calculate the target position
-	target_position = (player_position - position).normalized()
- 
-	# Check if the enemy is in a 3px range of the player, if not move to the target position
-	if position.distance_to(player_position) > 3:
-		move_and_slide(target_position * speed)
-		look_at(player_position)
- 
+	var target = player.position
+	if go  == true:	
+		velocity = position.direction_to(target) * speed
+		look_at(target)
+	move_and_slide()
+	if position.distance_to(target) > 10:
+		move_and_slide()
+	
+
+
+func _on_area_2d_body_entered(body):
+	if body is Player:
+		go = true
