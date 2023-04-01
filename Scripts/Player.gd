@@ -6,14 +6,14 @@ enum EPlayer { Human, Ghost }
 signal health_updated(life)
 signal killed()
 
-@export var speed: float
+
 @export var player: EPlayer
 @export var bullet_speed: float
 
 var bullet = load("res://Scenes/bullet.tscn")
 
-@export var max_life = 3
-@onready var life = max_life : set = _set_life
+
+
  
 
 var player1: Player
@@ -53,20 +53,7 @@ func _physics_process(delta):
 	
 	
 
-func damage(amount):
-	_set_life(life-amount)
 
-func kill():
-	pass
-
-func _set_life(value):
-	var prev_life = life
-	life = clamp(value, 0, max_life)
-	if life != prev_life:
-		emit_signal("life updated", life)
-		if life == 0:
-			kill()
-			emit_signal("killed")
 	
 
 
