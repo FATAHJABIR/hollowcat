@@ -1,8 +1,7 @@
-extends CharacterBody2D
+extends Body
 class_name Monster
 
 @onready var player = get_parent().get_node("Player1")
-@export var speed = 40
 var go = false
 
 # Called when the node enters the scene tree for the first time.

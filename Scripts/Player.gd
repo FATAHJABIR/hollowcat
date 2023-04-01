@@ -1,5 +1,5 @@
 class_name Player
-extends CharacterBody2D
+extends Body
 
 enum EPlayer { Human, Ghost }
 
@@ -8,6 +8,9 @@ signal killed()
 
 @export var speed: float
 @export var player: EPlayer
+@export var bullet_speed: float
+
+var bullet = load("res://Scenes/bullet.tscn")
 
 @export var max_life = 3
 @onready var life = max_life : set = _set_life
@@ -39,6 +42,12 @@ func _ready():
 		player2 = self
 
 func _process(delta):
+	if Input.is_action_just_pressed("attack_1"):
+		var new_bullet: Bullet = bullet.instantiate()
+		new_bullet.linear_velocity = get_direction().normalized() * bullet_speed
+		
+		
+func _physics_process(delta):
 	velocity = get_direction() * speed
 	move_and_slide()
 	
