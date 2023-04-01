@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var effects_animations = $AnimationPlayer
 
 @export var speed: float
+@export var power: float
 
-	
 func damage(amount):
 	_set_life(life-amount)
 
