@@ -6,11 +6,9 @@ extends CharacterBody2D
 @onready var effects_animations = get_parent().get_node("AnimationPlayer")
 @onready var invulnerability_timer = $immunityTimer
 @export var speed: float
-@export var power: float
 
 func damage(amount):
-	if invulnerability_timer.is_stopped():
-		_set_life(life-amount)
+	_set_life(life-amount)
 
 func _set_life(value):
 	var prev_life = life

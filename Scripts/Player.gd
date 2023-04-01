@@ -43,6 +43,8 @@ func _ready():
 	
 
 func _process(delta):
+	if player == EPlayer.Human:
+		print(get_node("immunityTimer").time_left)
 	direction = get_direction()
 	if direction.length_squared() > 0.0001:
 		last_normalized_direction = direction.normalized()
@@ -54,22 +56,26 @@ func _process(delta):
 		new_bullet.position = position
 		get_tree().root.add_child(new_bullet)
 		
-		
+func damage(amount):
+	if invulnerability_timer.is_stopped():
+		effects_animations.play("Red")
+		effects_animations.queue("flash")
+		_set_life(life-amount)
+		invulnerability_timer.start()
+
 func _physics_process(delta):
 	velocity = direction * speed
 	move_and_slide()
 
 func _on_monster_detector_body_entered(body):
-	if body is Monster:
-		effects_animations.play("Red")
-		effects_animations.queue("flash")
-		damage(1)
-		print(life)
-
-
+	damage(1)
 
 func _on_immunity_timer_timeout():
-	effects_animations.play("rest")
+	print("test")
+	if get_node("monsterDetector").has_overlapping_bodies():
+		damage(1)
+	else:
+		effects_animations.play("rest")
 
 
 func _on_killed():
