@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://mrnvbaep1y55"]
+[gd_scene load_steps=4 format=3 uid="uid://mrnvbaep1y55"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_4uygf"]
 [ext_resource type="PackedScene" uid="uid://dcgknl1nk1213" path="res://Scenes/level.tscn" id="1_5u3lo"]
+[ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_7w3m2"]
 
 [node name="main" type="Control"]
 layout_mode = 3

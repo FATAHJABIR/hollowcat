@@ -24,5 +24,7 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
+	print("area entered")
 	if body is Player:
+		print("player enters the area")
 		go = true
