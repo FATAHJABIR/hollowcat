@@ -57,4 +57,12 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer2/SubViewport"]
 position = Vector2(800, 285)
 
-[editable path="HBoxContainer/SubViewportContainer/SubViewport/Level"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_hjrgk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2"]
+texture = SubResource("GradientTexture2D_k6ldq")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_7hx7q")]
