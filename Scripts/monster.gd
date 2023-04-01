@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name Monster
 
 @onready var player = get_parent().get_node("Player1")
 @export var speed = 40

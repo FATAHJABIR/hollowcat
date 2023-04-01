@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcgknl1nk1213"]
+[gd_scene load_steps=7 format=3 uid="uid://dcgknl1nk1213"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
+[ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
+[ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_n4kc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(64, 63)
@@ -29,7 +31,8 @@ texture = SubResource("GradientTexture2D_k6ldq")
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(800, 285)
-script = ExtResource("1_08klv")
+script = ExtResource("2_u6sgo")
+max_distance_between_players = 500.0
 speed = 400.0
 player = 1
 life = 3
@@ -38,7 +41,10 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_hjrgk")
+disabled = true
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player2"]
 texture = SubResource("GradientTexture2D_k6ldq")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_n4kc6")]
