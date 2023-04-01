@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 enum EPlayer { Human, Ghost }
@@ -5,6 +6,10 @@ enum EPlayer { Human, Ghost }
 @export var speed: float
 @export var player: EPlayer
 @export var life: int
+
+
+var player1: Player
+var player2: Player
 
 func get_direction():
 	var direction: Vector2
@@ -19,6 +24,12 @@ func get_direction():
 		print("Player %s does not exist" % player)
 	
 	return direction
+
+func _ready():
+	if player == EPlayer.Human:
+		player1 = self
+	elif player == EPlayer.Ghost:
+		player2 = self
 
 func _process(delta):
 	velocity = get_direction() * speed
