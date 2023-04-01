@@ -1,12 +1,12 @@
 class_name Player
-extends CharacterBody2D
+extends Body
 
 enum EPlayer { Human, Ghost }
 
-@export var speed: float
 @export var player: EPlayer
-@export var life: int
+@export var bullet_speed: float
 
+var bullet = load("res://Scenes/bullet.tscn")
 
 var player1: Player
 var player2: Player
@@ -30,5 +30,11 @@ func get_direction():
 	return direction
 
 func _process(delta):
+	if Input.is_action_just_pressed("attack_1"):
+		var new_bullet: Bullet = bullet.instantiate()
+		new_bullet.linear_velocity = get_direction().normalized() * bullet_speed
+		
+		
+func _physics_process(delta):
 	velocity = get_direction() * speed
 	move_and_slide()
