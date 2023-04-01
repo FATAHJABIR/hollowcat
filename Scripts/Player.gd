@@ -3,10 +3,19 @@ extends Body
 
 enum EPlayer { Human, Ghost }
 
+signal health_updated(life)
+signal killed()
+
+
 @export var player: EPlayer
 @export var bullet_speed: float
 
 var bullet = load("res://Scenes/bullet.tscn")
+ 
+
+
+
+
  
 
 var player1: Player
@@ -41,6 +50,13 @@ func _process(delta):
 func _physics_process(delta):
 	velocity = get_direction() * speed
 	move_and_slide()
+
+	
+	
+
+
+	
+
 
 func _on_input_event(viewport, event, shape_idx):
 	pass
