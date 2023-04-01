@@ -25,7 +25,6 @@ layer_0/tile_data = PackedInt32Array(393220, 131072, 2, 393221, 262144, 2, 39322
 position = Vector2(254, 292)
 script = ExtResource("1_08klv")
 bullet_speed = 100.0
-life = 3
 speed = 400.0
 metadata/_edit_group_ = true
 
