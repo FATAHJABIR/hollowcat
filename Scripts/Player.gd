@@ -38,7 +38,7 @@ func get_direction():
 func _ready():
 	player1 = get_node("../Player1")
 	player2 = get_node("../Player2") 
-	connect("health_updated", get_parent().get_parent().get_node("UI/Life").on_player_life_change)
+	connect("health_updated", get_parent().get_node("Node2D/UI/Life").on_player_life_change)
 	emit_signal("health_updated", max_life)
 	
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcgknl1nk1213"]
+[gd_scene load_steps=15 format=3 uid="uid://dcgknl1nk1213"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
 [ext_resource type="PackedScene" uid="uid://bktghywx6cjkw" path="res://Scenes/monster.tscn" id="3_n4kc6"]
+[ext_resource type="PackedScene" uid="uid://cdfnc87082uwj" path="res://Scenes/lifeUI.tscn" id="4_2fo4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(64, 63)
@@ -128,6 +129,8 @@ shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="Player1"]
 wait_time = 3.0
+one_shot = true
+autostart = true
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(800, 285)
@@ -157,6 +160,8 @@ autoplay = "rest"
 libraries = {
 "": SubResource("AnimationLibrary_3856b")
 }
+
+[node name="Node2D" parent="." instance=ExtResource("4_2fo4i")]
 
 [connection signal="killed" from="Player1" to="Player1" method="_on_killed"]
 [connection signal="body_entered" from="Player1/monsterDetector" to="Player1" method="_on_monster_detector_body_entered"]

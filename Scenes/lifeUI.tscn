@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdfnc87082uwj"]
+[gd_scene load_steps=3 format=3 uid="uid://cdfnc87082uwj"]
 
 [ext_resource type="Texture2D" path="res://Assets/heart.png" id="1_jdu0y"]
 [ext_resource type="Script" path="res://Scenes/lifeSystem.gd" id="1_vtfj1"]
-[ext_resource type="PackedScene" uid="uid://dcgknl1nk1213" path="res://Scenes/level.tscn" id="2_1qf40"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,5 +21,3 @@ offset_bottom = 40.0
 texture = ExtResource("1_jdu0y")
 expand_mode = 2
 stretch_mode = 1
-
-[node name="Node2D" parent="." instance=ExtResource("2_1qf40")]
