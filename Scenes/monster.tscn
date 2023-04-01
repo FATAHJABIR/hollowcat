@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bktghywx6cjkw"]
 
+[ext_resource type="Script" path="res://Scripts/monster.gd" id="1_4foc6"]
 [ext_resource type="Texture2D" uid="uid://jtsij57kyjkm" path="res://icon.svg" id="2_cavkf"]
-[ext_resource type="Script" path="res://enemy.gd" id="2_myui3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgdcc"]
 size = Vector2(121, 125)
@@ -10,7 +10,7 @@ size = Vector2(121, 125)
 radius = 423.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("2_myui3")
+script = ExtResource("1_4foc6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
