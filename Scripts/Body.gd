@@ -12,7 +12,7 @@ func damage(amount):
 	_set_life(life-amount)
 
 func kill():
-	pass
+	effects_animations.play("death")
 
 func _set_life(value):
 	var prev_life = life
