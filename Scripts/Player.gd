@@ -38,7 +38,7 @@ func get_direction():
 func _ready():
 	player1 = get_node("../Player1")
 	player2 = get_node("../Player2")
-
+	#	graphics.draw(sprites.heart_filled, 10, 10)
 	
 
 func _process(delta):
@@ -75,4 +75,4 @@ func _on_immunity_timer_timeout():
 
 func _on_killed():
 	effects_animations.play("death")
-	get_tree().reload_current_scene
+	get_tree().reload_current_scene()
