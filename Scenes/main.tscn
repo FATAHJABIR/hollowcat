@@ -34,9 +34,6 @@ remote_path = NodePath("../../../Camera2D")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Level/Player2" index="2"]
 remote_path = NodePath("../../../../../SubViewportContainer2/SubViewport/Camera2D")
 
-[node name="CharacterBody2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Level" index="3"]
-life = null
-
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 position = Vector2(254, 292)
 
