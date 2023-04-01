@@ -18,6 +18,7 @@ gradient = SubResource("Gradient_2ek6t")
 position = Vector2(254, 292)
 script = ExtResource("1_08klv")
 speed = 400.0
+life = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
@@ -33,6 +34,7 @@ position = Vector2(800, 285)
 script = ExtResource("1_08klv")
 speed = 400.0
 player = 1
+life = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
