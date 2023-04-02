@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdfnc87082uwj"]
+[gd_scene load_steps=3 format=3 uid="uid://b0wcww0ghbbep"]
 
-[ext_resource type="Texture2D" path="res://Assets/heart.png" id="1_jdu0y"]
+[ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="1_jdu0y"]
 [ext_resource type="Script" path="res://Scenes/lifeSystem.gd" id="1_vtfj1"]
 
 [node name="Node2D" type="Node2D"]

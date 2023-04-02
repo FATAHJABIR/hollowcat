@@ -1,15 +1,18 @@
 extends Body
 class_name Monster
 
-@onready var player = get_parent().get_node("Player1")
+var player: Player
 var go = false
+@export var monster_type: Player.EPlayer
+var monster_ghost = load("res://Scenes/monster_ghost.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	reset_life()
+	if monster_type == Player.EPlayer.Human:
+		player = get_parent().get_node("PlayerHuman")
+	elif monster_type == Player.EPlayer.Ghost:
+		player = get_parent().get_node("PlayerGhost")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
 	var target = player.position
@@ -19,8 +22,6 @@ func _physics_process(delta):
 	move_and_slide()
 	if position.distance_to(target) > 10:
 		move_and_slide()
-	
-
 
 func _on_area_2d_body_entered(body):
 	print("area entered")
@@ -29,4 +30,14 @@ func _on_area_2d_body_entered(body):
 		go = true
 
 func _on_killed():
+	if monster_type == Player.EPlayer.Human:
+		reset_life()
+		var new_monster = duplicate()
+		new_monster.monster_type = Player.EPlayer.Ghost
+		new_monster.set_collision_layer_value(3, false)
+		new_monster.set_collision_layer_value(4, true)
+		new_monster.set_collision_mask_value(1, false)
+		new_monster.set_collision_mask_value(5, false)
+		new_monster.set_collision_mask_value(2, true)
+		get_parent().add_child(new_monster) 
 	queue_free()

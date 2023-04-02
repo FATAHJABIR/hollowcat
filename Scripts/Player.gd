@@ -36,15 +36,12 @@ func get_direction():
 	return new_direction
 
 func _ready():
-	player1 = get_node("../Player1")
-	player2 = get_node("../Player2") 
+	player1 = get_node("../PlayerHuman")
+	player2 = get_node("../PlayerGhost") 
 	connect("health_updated", get_parent().get_node("Node2D/UI/Life").on_player_life_change)
 	emit_signal("health_updated", max_life)
-	
 
 func _process(delta):
-	if player == EPlayer.Human:
-		print(get_node("immunityTimer").time_left)
 	direction = get_direction()
 	if direction.length_squared() > 0.0001:
 		last_normalized_direction = direction.normalized()
@@ -71,7 +68,6 @@ func _on_monster_detector_body_entered(body):
 	damage(1)
 
 func _on_immunity_timer_timeout():
-	print("test")
 	if get_node("monsterDetector").has_overlapping_bodies():
 		damage(1)
 	else:

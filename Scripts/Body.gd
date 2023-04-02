@@ -7,8 +7,12 @@ extends CharacterBody2D
 @onready var invulnerability_timer = $immunityTimer
 @export var speed: float
 
+func reset_life():
+	_set_life(max_life)
+
 func damage(amount):
 	_set_life(life-amount)
+	print(life)
 
 func _set_life(value):
 	var prev_life = life

@@ -70,8 +70,8 @@ attack_2={
 
 [layer_names]
 
-2d_physics/layer_1="Human"
-2d_physics/layer_2="Ghost"
-2d_physics/layer_3="Monster"
-2d_physics/layer_4="Bullet"
-2d_physics/layer_5="MonsterArea"
+2d_physics/layer_1="PlayerHuman"
+2d_physics/layer_2="PlayerGhost"
+2d_physics/layer_3="MonsterHuman"
+2d_physics/layer_4="MonsterGhost"
+2d_physics/layer_5="Walls"

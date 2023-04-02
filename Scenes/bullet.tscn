@@ -7,8 +7,8 @@
 radius = 19.0263
 
 [node name="bullet" type="RigidBody2D"]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 0
+collision_mask = 20
 gravity_scale = 2.66454e-15
 script = ExtResource("1_4wfxf")
 
@@ -21,7 +21,7 @@ texture = ExtResource("2_3fgws")
 shape = SubResource("CircleShape2D_wvlna")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
