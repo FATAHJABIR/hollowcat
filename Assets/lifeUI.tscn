@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://45ixky36e65a"]
+[gd_scene load_steps=3 format=3 uid="uid://reqfdtpe16nh"]
 
 [ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="1_jdu0y"]
 [ext_resource type="Script" path="res://Scripts/lifeSystem.gd" id="1_vtfj1"]
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
