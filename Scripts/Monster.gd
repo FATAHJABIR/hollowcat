@@ -4,7 +4,7 @@ class_name Monster
 var player: Player
 var go = false
 @export var monster_type: Player.EPlayer
-var monster_ghost = load("res://Scenes/monster_ghost.tscn")
+
 
 signal ghost_death()
 

@@ -83,46 +83,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -416,7 +392,10 @@ collision_mask = 20
 motion_mode = 1
 slide_on_ceiling = false
 script = ExtResource("1_08klv")
+player = null
 bullet_speed = 1000.0
+starting_direction = null
+max_life = null
 speed = 400.0
 metadata/_edit_group_ = true
 
@@ -431,7 +410,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("2_fshri")
 flip_h = true
 hframes = 48
-frame = 4
+frame = 5
 
 [node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
@@ -481,7 +460,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("4_i2akr")
 flip_h = true
 hframes = 48
-frame = 4
+frame = 5
 
 [node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -521,6 +500,7 @@ metadata/_edit_group_ = true
 [node name="Monster" parent="." instance=ExtResource("3_n4kc6")]
 visible = false
 position = Vector2(579, 151)
+speed = 0.0
 
 [connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed"]
 [connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered"]

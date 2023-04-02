@@ -17,10 +17,10 @@
 [ext_resource type="AudioStream" uid="uid://dabgk6u52omy1" path="res://sound/mixkit-explainer-video-game-alert-sweep-236.wav" id="15_rq7tn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
-size = Vector2(64, 63.5)
+size = Vector2(42, 63.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trro"]
-size = Vector2(70, 70)
+size = Vector2(44, 70)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3kijw"]
 animation = &"idle_down"
@@ -81,30 +81,29 @@ advance_mode = 2
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_rll1v")
 states/Idle/position = Vector2(397, 87)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_7jsjw")
-states/Walk/position = Vector2(520, 92)
+states/Walk/position = Vector2(591, 87)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_pg8sm"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_hol3b"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jqhu5")]
-graph_offset = Vector2(-110.8, 5.95498)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kt8tx"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_p6kl5"]
 
 [sub_resource type="Animation" id="Animation_yuvqn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -124,18 +123,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_gqnvb"]
@@ -194,7 +181,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -211,7 +198,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -223,7 +210,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
+tracks/1/path = NodePath("Sprite2D:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -240,7 +227,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -252,7 +239,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
+tracks/1/path = NodePath("Sprite2D:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -269,7 +256,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -313,7 +300,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -342,7 +329,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -359,7 +346,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -371,7 +358,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlayerHuman/Sprite2D:flip_h")
+tracks/1/path = NodePath("Sprite2D:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -388,7 +375,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlayerHuman/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -415,7 +402,7 @@ _data = {
 "walk_up": SubResource("Animation_31hjy")
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_fwkch"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_71rtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valil"]
 size = Vector2(240, 40)
@@ -448,25 +435,37 @@ position = Vector2(706, -98)
 metadata/_edit_group_ = true
 
 [node name="PlayerHuman" type="CharacterBody2D" parent="."]
-position = Vector2(621, 956)
+position = Vector2(332, 958)
 collision_mask = 20
 motion_mode = 1
-floor_stop_on_slope = false
-floor_block_on_wall = false
+slide_on_ceiling = false
 script = ExtResource("1_ny2e6")
+player = null
 bullet_speed = 1000.0
-speed = 300.0
+starting_direction = null
+max_life = null
+speed = 400.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman"]
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_hjrgk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerHuman"]
+position = Vector2(3, 0)
+scale = Vector2(2.817, 2.817)
+texture = ExtResource("5_ck0pn")
+flip_h = true
+hframes = 48
+frame = 7
 
 [node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman/Area2D"]
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="PlayerHuman"]
@@ -476,25 +475,18 @@ one_shot = true
 [node name="AnimationTree" type="AnimationTree" parent="PlayerHuman"]
 tree_root = SubResource("AnimationNodeStateMachine_sc16q")
 anim_player = NodePath("../Animator")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_kt8tx")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_p6kl5")
 parameters/Idle/blend_position = Vector2(0, 0.062)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="Animator" type="AnimationPlayer" parent="PlayerHuman"]
-root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_3856b")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerHuman"]
-scale = Vector2(2.817, 2.817)
-texture = ExtResource("5_ck0pn")
-flip_h = true
-hframes = 48
-frame = 5
-
 [node name="PlayerGhost" type="CharacterBody2D" parent="."]
-position = Vector2(377, 959)
+position = Vector2(620, 955)
 collision_layer = 2
 collision_mask = 8
 motion_mode = 1
@@ -511,10 +503,17 @@ position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_hjrgk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
+scale = Vector2(2.817, 2.817)
+texture = ExtResource("7_35m07")
+flip_h = true
+hframes = 48
+frame = 7
+
 [node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 0
-collision_mask = 40
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -524,15 +523,7 @@ shape = SubResource("RectangleShape2D_7trro")
 wait_time = 3.0
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
-scale = Vector2(2.817, 2.817)
-texture = ExtResource("7_35m07")
-flip_h = true
-hframes = 48
-frame = 3
-
 [node name="Animator" type="AnimationPlayer" parent="PlayerGhost"]
-root_node = NodePath("")
 autoplay = "rest"
 libraries = {
 "": SubResource("AnimationLibrary_3856b")
@@ -541,7 +532,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="PlayerGhost"]
 tree_root = SubResource("AnimationNodeStateMachine_sc16q")
 anim_player = NodePath("../Animator")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_fwkch")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_71rtg")
 parameters/Idle/blend_position = Vector2(0, 0.062)
 parameters/Walk/blend_position = Vector2(0, 0)
 
@@ -612,6 +604,7 @@ texture = ExtResource("8_k1v21")
 
 [node name="Monster" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(528, -817)
+speed = 0.0
 
 [node name="Boss" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(537, -2730)
@@ -621,9 +614,11 @@ speed = 2.08165e-12
 
 [node name="Minion1" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(336, -2407)
+speed = 0.0
 
 [node name="Minion2" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(796, -2418)
+speed = 0.0
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -638,15 +633,10 @@ stream = ExtResource("15_rq7tn")
 [connection signal="body_exited" from="first_door_plate" to="first_door" method="_on_door_plate_body_exited"]
 [connection signal="body_entered" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_entered"]
 [connection signal="body_exited" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_exited"]
-[connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed"]
-[connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered"]
-[connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout"]
-[connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated"]
-[connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed"]
-[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered"]
-[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout"]
-[connection signal="ghost_death" from="Monster" to="monster_door" method="_on_signal"]
-[connection signal="ghost_death" from="Minion1" to="Boss" method="_on_monster_death"]
-[connection signal="ghost_death" from="Minion2" to="Boss" method="_on_monster_death"]
+[connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed" flags=18]
+[connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered" flags=18]
+[connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout" flags=18]
+[connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated" flags=18]
+[connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed" flags=18]
+[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered" flags=18]
+[connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout" flags=18]

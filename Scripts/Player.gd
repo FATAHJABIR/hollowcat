@@ -8,7 +8,7 @@ enum EPlayer { Human, Ghost }
 @export var bullet_speed: float
 
 @onready var area2d: Area2D = get_node("Area2D")
-
+@onready var invulnerability_timer = $immunityTimer
 @onready var animation_tree = $AnimationTree
 @export var starting_direction : Vector2 = Vector2(0, 0.5)
 @onready var state_machine = animation_tree.get('parameters/playback')
@@ -44,7 +44,6 @@ func _ready():
 	player1 = get_node("../PlayerHuman")
 	player2 = get_node("../PlayerGhost") 
 	connect("health_updated", get_parent().get_node("Life/UI/Life").on_player_life_change)
-	emit_signal("health_updated", max_life)
 	update_animation_parameters(starting_direction)
 
 func _process(delta):

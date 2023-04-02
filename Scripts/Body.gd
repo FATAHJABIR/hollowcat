@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var max_life = 3
 @onready var life = max_life : set = _set_life
 @onready var effects_animations = get_node("Animator")
-@onready var invulnerability_timer = $immunityTimer
+
 @export var speed: float
 
 func reset_life():
