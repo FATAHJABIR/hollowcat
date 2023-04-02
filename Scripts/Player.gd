@@ -22,6 +22,7 @@ var direction: Vector2
 var player1: Player
 var player2: Player
 
+@onready var sound: AudioStreamPlayer2D = get_parent().get_node("bullet_shot")
 
 
 func get_direction():
@@ -52,7 +53,8 @@ func _process(delta):
 		last_normalized_direction = direction.normalized()
 	
 	if Input.is_action_just_pressed("attack_1") and player == EPlayer.Human \
-	or Input.is_action_just_pressed("attack_2") and player == EPlayer.Ghost:  
+	or Input.is_action_just_pressed("attack_2") and player == EPlayer.Ghost:
+		sound.play()
 		var new_bullet: Bullet = bullet.instantiate()
 		new_bullet.apply_central_impulse(last_normalized_direction * bullet_speed)
 		new_bullet.position = position
