@@ -57,7 +57,7 @@ func _process(delta):
 		new_bullet.apply_central_impulse(last_normalized_direction * bullet_speed)
 		new_bullet.position = position
 		new_bullet.bullet_owner = self
-		get_tree().root.add_child(new_bullet)
+		get_parent().add_child(new_bullet)
 	
 
 func damage(amount):
@@ -74,7 +74,8 @@ func _physics_process(delta):
 	pick_new_state()
 
 func _on_monster_detector_body_entered(body):
-	damage(1)
+	if body is Monster:
+		damage(1)
 
 func _on_immunity_timer_timeout():
 	var is_reattacked: bool = false
