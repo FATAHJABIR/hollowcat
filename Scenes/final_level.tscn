@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l41q8rjjq8i1"]
+[gd_scene load_steps=23 format=3 uid="uid://l41q8rjjq8i1"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny2e6"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_yg0aj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jtsij57kyjkm" path="res://icon.svg" id="8_k1v21"]
 [ext_resource type="Script" path="res://Scripts/doors/two_plate_door.gd" id="9_prdai"]
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="10_4mxcf"]
+[ext_resource type="Script" path="res://Scripts/doors/signal_door.gd" id="10_51cgb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(64, 63.5)
@@ -241,7 +242,7 @@ position = Vector2(0.500015, -17)
 scale = Vector2(1.86719, 0.3125)
 texture = ExtResource("8_k1v21")
 
-[node name="first_door2" type="RigidBody2D" parent="."]
+[node name="second_door" type="RigidBody2D" parent="."]
 position = Vector2(488, 30)
 collision_layer = 16
 collision_mask = 37
@@ -253,22 +254,43 @@ speed = 2000.0
 open_size = 250.0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="first_door2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="second_door"]
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_valil")
 
-[node name="Sprite2D" type="Sprite2D" parent="first_door2"]
+[node name="Sprite2D" type="Sprite2D" parent="second_door"]
+position = Vector2(0.500015, -17)
+scale = Vector2(1.86719, 0.3125)
+texture = ExtResource("8_k1v21")
+
+[node name="monster_door" type="RigidBody2D" parent="."]
+position = Vector2(520, -1021)
+collision_layer = 16
+collision_mask = 37
+gravity_scale = 2.66454e-15
+lock_rotation = true
+freeze = true
+script = ExtResource("10_51cgb")
+speed = 2000.0
+open_size = 250.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="monster_door"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_valil")
+
+[node name="Sprite2D" type="Sprite2D" parent="monster_door"]
 position = Vector2(0.500015, -17)
 scale = Vector2(1.86719, 0.3125)
 texture = ExtResource("8_k1v21")
 
 [node name="Monster" parent="." instance=ExtResource("10_4mxcf")]
-position = Vector2(460, -602)
+position = Vector2(528, -817)
 
-[connection signal="body_entered" from="second_door_plate" to="first_door2" method="_on_door_plate_body_entered"]
-[connection signal="body_exited" from="second_door_plate" to="first_door2" method="_on_door_plate_body_exited"]
-[connection signal="body_entered" from="second_door_plate2" to="first_door2" method="_on_door_plate_2_body_entered"]
-[connection signal="body_exited" from="second_door_plate2" to="first_door2" method="_on_door_plate_2_body_exited"]
+[connection signal="body_entered" from="second_door_plate" to="second_door" method="_on_door_plate_body_entered"]
+[connection signal="body_exited" from="second_door_plate" to="second_door" method="_on_door_plate_body_exited"]
+[connection signal="body_entered" from="second_door_plate2" to="second_door" method="_on_door_plate_2_body_entered"]
+[connection signal="body_exited" from="second_door_plate2" to="second_door" method="_on_door_plate_2_body_exited"]
 [connection signal="body_entered" from="first_door_plate" to="first_door" method="_on_door_plate_body_entered"]
 [connection signal="body_exited" from="first_door_plate" to="first_door" method="_on_door_plate_body_exited"]
 [connection signal="body_entered" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_entered"]
@@ -280,3 +302,4 @@ position = Vector2(460, -602)
 [connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed"]
 [connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered"]
 [connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout"]
+[connection signal="ghost_death" from="Monster" to="monster_door" method="_on_signal"]
