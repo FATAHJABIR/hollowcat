@@ -56,7 +56,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 remote_path = NodePath("../../../Camera2D")
 
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="2"]
-frame = 4
+frame = 2
 
 [node name="AnimationTree" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="5"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iae4o")
@@ -65,7 +65,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iae4o")
 life_system = NodePath("../../../../SubViewportContainer2/SubViewport/LifeSystem/UI/Life")
 
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="1"]
-frame = 4
+frame = 2
 
 [node name="HBoxContainer@SubViewportContainer@SubViewport@Level@Player2@RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="5"]
 position = Vector2(2.08165e-12, 2.08165e-12)
