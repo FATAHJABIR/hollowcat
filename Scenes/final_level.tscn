@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://l41q8rjjq8i1"]
+[gd_scene load_steps=58 format=3 uid="uid://l41q8rjjq8i1"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny2e6"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_yg0aj"]
@@ -6,17 +6,113 @@
 [ext_resource type="PackedScene" uid="uid://n24ea2abms38" path="res://Scenes/vase.tscn" id="4_t6kuu"]
 [ext_resource type="TileSet" uid="uid://bfcsmf00klnqh" path="res://Assets/new_tile_set.tres" id="5_bw1q8"]
 [ext_resource type="Texture2D" uid="uid://3rfno2iiepm3" path="res://Assets/PlayerSpriteSheet.png" id="5_ck0pn"]
+[ext_resource type="Texture2D" uid="uid://d4ki58oqji3xh" path="res://Assets/Porte.png" id="6_3y4cw"]
 [ext_resource type="PackedScene" uid="uid://ck8gcb36hodny" path="res://Scenes/pressure_plate.tscn" id="6_6ufq4"]
 [ext_resource type="Texture2D" uid="uid://vgp6irqxde53" path="res://Assets/GhostSpriteSheet.png" id="7_35m07"]
 [ext_resource type="Script" path="res://Scripts/doors/one_plate_door.gd" id="7_emi5l"]
-[ext_resource type="Texture2D" uid="uid://jtsij57kyjkm" path="res://icon.svg" id="8_k1v21"]
 [ext_resource type="Script" path="res://Scripts/doors/two_plate_door.gd" id="9_prdai"]
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="10_4mxcf"]
 [ext_resource type="Script" path="res://Scripts/doors/signal_door.gd" id="10_51cgb"]
+[ext_resource type="Texture2D" uid="uid://m7y3o877hnq3" path="res://Assets/Final boss.png" id="11_ebbf1"]
+[ext_resource type="Texture2D" uid="uid://bkwcrhli3m1ql" path="res://Assets/Boss fantôme .png" id="12_pkgqq"]
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="14_02qnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valil"]
-size = Vector2(240, 40)
+size = Vector2(407.5, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgdcc"]
+size = Vector2(121, 125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_darto"]
+radius = 423.0
+
+[sub_resource type="Animation" id="Animation_yuvqn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_gqnvb"]
+resource_name = "Red"
+length = 0.6154
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oulpl"]
+resource_name = "death"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_icqsm"]
+resource_name = "flash"
+length = 0.2054
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wsfca"]
+resource_name = "rest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3856b"]
+_data = {
+"RESET": SubResource("Animation_yuvqn"),
+"Red": SubResource("Animation_gqnvb"),
+"death": SubResource("Animation_oulpl"),
+"flash": SubResource("Animation_icqsm"),
+"rest": SubResource("Animation_wsfca")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(42, 63.5)
@@ -88,7 +184,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_p6kl5"]
 
-[sub_resource type="Animation" id="Animation_yuvqn"]
+[sub_resource type="Animation" id="Animation_tf6cr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -127,7 +223,7 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_gqnvb"]
+[sub_resource type="Animation" id="Animation_dfhlk"]
 resource_name = "Red"
 length = 0.6154
 tracks/0/type = "value"
@@ -143,7 +239,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_oulpl"]
+[sub_resource type="Animation" id="Animation_qswnp"]
 resource_name = "death"
 loop_mode = 1
 tracks/0/type = "value"
@@ -159,7 +255,7 @@ tracks/0/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_icqsm"]
+[sub_resource type="Animation" id="Animation_bgv7s"]
 resource_name = "flash"
 length = 0.2054
 loop_mode = 1
@@ -387,12 +483,12 @@ tracks/0/keys = {
 "values": [40, 41, 42, 43, 44, 45, 46, 47]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3856b"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dv7hg"]
 _data = {
-"RESET": SubResource("Animation_yuvqn"),
-"Red": SubResource("Animation_gqnvb"),
-"death": SubResource("Animation_oulpl"),
-"flash": SubResource("Animation_icqsm"),
+"RESET": SubResource("Animation_tf6cr"),
+"Red": SubResource("Animation_dfhlk"),
+"death": SubResource("Animation_qswnp"),
+"flash": SubResource("Animation_bgv7s"),
 "idle_down": SubResource("Animation_ixv8h"),
 "idle_left": SubResource("Animation_yvdo0"),
 "idle_right": SubResource("Animation_atxr4"),
@@ -443,17 +539,16 @@ gravity_scale = 2.66454e-15
 lock_rotation = true
 freeze = true
 script = ExtResource("7_emi5l")
-open_size = 250.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="first_door"]
-position = Vector2(0, -17)
+position = Vector2(-4.5, -6.5)
 shape = SubResource("RectangleShape2D_valil")
 
 [node name="Sprite2D" type="Sprite2D" parent="first_door"]
 position = Vector2(0.500015, -17)
 scale = Vector2(1.86719, 0.3125)
-texture = ExtResource("8_k1v21")
+texture = ExtResource("6_3y4cw")
 
 [node name="second_door" type="RigidBody2D" parent="."]
 position = Vector2(488, 30)
@@ -464,17 +559,16 @@ lock_rotation = true
 freeze = true
 script = ExtResource("9_prdai")
 speed = 2000.0
-open_size = 250.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="second_door"]
-position = Vector2(0, -17)
+position = Vector2(1.5, -11)
 shape = SubResource("RectangleShape2D_valil")
 
 [node name="Sprite2D" type="Sprite2D" parent="second_door"]
 position = Vector2(0.500015, -17)
 scale = Vector2(1.86719, 0.3125)
-texture = ExtResource("8_k1v21")
+texture = ExtResource("6_3y4cw")
 
 [node name="monster_door" type="RigidBody2D" parent="."]
 position = Vector2(520, -1021)
@@ -484,26 +578,52 @@ gravity_scale = 2.66454e-15
 lock_rotation = true
 freeze = true
 script = ExtResource("10_51cgb")
-open_size = 250.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="monster_door"]
-position = Vector2(0, -17)
+position = Vector2(-0.25, -8)
 shape = SubResource("RectangleShape2D_valil")
 
 [node name="Sprite2D" type="Sprite2D" parent="monster_door"]
 position = Vector2(0.500015, -17)
 scale = Vector2(1.86719, 0.3125)
-texture = ExtResource("8_k1v21")
+texture = ExtResource("6_3y4cw")
 
 [node name="Monster" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(528, -817)
 
-[node name="Boss" parent="." instance=ExtResource("10_4mxcf")]
+[node name="Boss" type="CharacterBody2D" parent="."]
 position = Vector2(537, -2730)
+collision_layer = 4
+collision_mask = 17
 script = ExtResource("14_02qnr")
 max_life = 10
-speed = 2.08165e-12
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_pgdcc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+texture = ExtResource("11_ebbf1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Boss"]
+visible = false
+texture = ExtResource("12_pkgqq")
+
+[node name="Area2D" type="Area2D" parent="Boss"]
+position = Vector2(-0.5, -0.5)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/Area2D"]
+position = Vector2(30.5, 2.5)
+shape = SubResource("CircleShape2D_darto")
+
+[node name="Animator" type="AnimationPlayer" parent="Boss"]
+autoplay = "rest"
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
 
 [node name="Minion1" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(336, -2407)
@@ -532,7 +652,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("5_ck0pn")
 flip_h = true
 hframes = 48
-frame = 7
+frame = 1
 
 [node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
@@ -556,7 +676,7 @@ parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="Animator" type="AnimationPlayer" parent="PlayerHuman"]
 libraries = {
-"": SubResource("AnimationLibrary_3856b")
+"": SubResource("AnimationLibrary_dv7hg")
 }
 
 [node name="PlayerGhost" type="CharacterBody2D" parent="."]
@@ -582,7 +702,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("7_35m07")
 flip_h = true
 hframes = 48
-frame = 7
+frame = 1
 
 [node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -600,7 +720,7 @@ one_shot = true
 [node name="Animator" type="AnimationPlayer" parent="PlayerGhost"]
 autoplay = "rest"
 libraries = {
-"": SubResource("AnimationLibrary_3856b")
+"": SubResource("AnimationLibrary_dv7hg")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="PlayerGhost"]
@@ -620,6 +740,8 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [connection signal="body_entered" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_entered"]
 [connection signal="body_exited" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_exited"]
 [connection signal="killed" from="Monster" to="monster_door" method="_on_signal"]
+[connection signal="killed" from="Boss" to="Boss" method="_on_killed" flags=18]
+[connection signal="body_entered" from="Boss/Area2D" to="Boss" method="_on_area_2d_body_entered" flags=18]
 [connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed" flags=18]
 [connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered" flags=18]
 [connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout" flags=18]

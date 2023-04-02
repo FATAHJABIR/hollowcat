@@ -21,6 +21,7 @@ func _physics_process(delta):
 	if go  == true:	
 		velocity = position.direction_to(target) * speed
 		look_at(target)
+		rotate(-PI / 2)
 	move_and_slide()
 	if position.distance_to(target) > 10:
 		move_and_slide()
@@ -45,6 +46,8 @@ func _on_killed():
 		area2d.set_collision_mask_value(1, false)
 		area2d.set_collision_mask_value(2, true)
 		new_monster.go = true
+		new_monster.get_node("Sprite2D").visible = false
+		new_monster.get_node("Sprite2D2").visible = true
 		
 		for signal_name in get_signal_list():
 			for connecttion in get_signal_connection_list(signal_name["name"]):

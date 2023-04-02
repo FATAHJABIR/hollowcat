@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://def5v6mcaexcx"]
+[gd_scene load_steps=12 format=3 uid="uid://def5v6mcaexcx"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_7mcfp"]
-[ext_resource type="Texture2D" uid="uid://jtsij57kyjkm" path="res://icon.svg" id="2_cavkf"]
+[ext_resource type="Texture2D" uid="uid://2helts1rd03a" path="res://Assets/Bébé monstre.png" id="2_gsh7f"]
+[ext_resource type="Texture2D" uid="uid://ciihj8r4cl2d1" path="res://Assets/Bebe fantôme .png" id="3_ux6vd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgdcc"]
 size = Vector2(121, 125)
@@ -109,7 +110,11 @@ position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_pgdcc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cavkf")
+texture = ExtResource("2_gsh7f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ux6vd")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-0.5, -0.5)

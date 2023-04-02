@@ -3,8 +3,8 @@ class_name Door
 
 var open: bool = false
 var last_open: bool = false
-@export var speed: float = 150
-@export var open_size: float = 100
+@export var speed: float = 220
+@export var open_size: float = 400
 @onready var start_y: float = position.y
 @onready var close_position: float = position.x
 @onready var open_position: float = position.x + open_size

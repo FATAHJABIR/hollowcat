@@ -42,18 +42,24 @@ func grab_vase(vase: RigidBody2D):
 	visible = false
 	vase.player = self
 	if vase is Vase:
-		vase.sprite.frame = 0
+		vase.sprite_normal.visible = false
+		vase.sprite_selected.visible = false
+		vase.sprite_inside.visible = true
 
 func release_vase():
 	is_grabbing_vase = false
 	visible = true
 
 
-func _on_area_2d_body_entered(body):
-	if body is Vase:
-		body.sprite.frame = 1
+func _on_area_2d_body_entered(vase):
+	if vase is Vase:
+		vase.sprite_normal.visible = false
+		vase.sprite_selected.visible = true
+		vase.sprite_inside.visible = false
 
 
-func _on_area_2d_body_exited(body):
-	if body is Vase:
-		body.sprite.frame = 0
+func _on_area_2d_body_exited(vase):
+	if vase is Vase:
+		vase.sprite_normal.visible = true
+		vase.sprite_selected.visible = false
+		vase.sprite_inside.visible = false

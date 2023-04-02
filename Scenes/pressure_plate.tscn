@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck8gcb36hodny"]
+[gd_scene load_steps=5 format=3 uid="uid://ck8gcb36hodny"]
 
-[ext_resource type="Texture2D" uid="uid://ico52j1o8y8n" path="res://Assets/dungeon_tiles.png" id="1_3eiy3"]
+[ext_resource type="Script" path="res://Scenes/pressure_plate.gd" id="1_kgo28"]
+[ext_resource type="Texture2D" uid="uid://cgebwvlfc6ycn" path="res://Assets/Plaque de pression .png" id="1_p2sfg"]
+[ext_resource type="Texture2D" uid="uid://bs6urh8wfiar8" path="res://Assets/Pressure inverted .png" id="2_ssb28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lkag"]
 size = Vector2(50, 50)
@@ -8,13 +10,23 @@ size = Vector2(50, 50)
 [node name="pressure_plate" type="Area2D"]
 collision_layer = 0
 collision_mask = 37
+script = ExtResource("1_kgo28")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0lkag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(3, 3)
-texture = ExtResource("1_3eiy3")
-region_enabled = true
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_p2sfg")
 region_rect = Rect2(191, 211, 18, 18)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_ssb28")
+region_rect = Rect2(191, 211, 18, 18)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

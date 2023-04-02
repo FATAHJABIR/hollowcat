@@ -62,6 +62,8 @@ func _process(delta):
 		new_bullet.apply_central_impulse(last_normalized_direction * bullet_speed)
 		new_bullet.position = position
 		new_bullet.bullet_owner = self
+		if player == EPlayer.Human:
+			new_bullet.get_node("Sprite2D").frame = 1
 		get_parent().add_child(new_bullet)
 	
 
