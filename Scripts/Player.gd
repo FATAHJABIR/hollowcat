@@ -68,7 +68,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_monster_detector_body_entered(body):
-	damage(1)
+	if body is Monster:
+		damage(1)
 
 func _on_immunity_timer_timeout():
 	var is_reattacked: bool = false

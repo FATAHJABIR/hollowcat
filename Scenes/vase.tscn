@@ -1,16 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://n24ea2abms38"]
 
 [ext_resource type="Script" path="res://Scripts/Vase.gd" id="1_co616"]
-[ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="2_xw3yl"]
+[ext_resource type="Texture2D" uid="uid://ico52j1o8y8n" path="res://Assets/dungeon_tiles.png" id="2_asxr1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn6we"]
-radius = 18.0
+radius = 38.0526
 
 [node name="vase" type="RigidBody2D"]
+collision_layer = 48
+collision_mask = 21
+gravity_scale = 2.66454e-15
+lock_rotation = true
 script = ExtResource("1_co616")
+vase_speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tn6we")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xw3yl")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1.5, 1.90735e-06)
+scale = Vector2(4.5, 4.33333)
+texture = ExtResource("2_asxr1")
+region_enabled = true
+region_rect = Rect2(195, 108, 14, 18)
