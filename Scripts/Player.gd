@@ -9,9 +9,11 @@ enum EPlayer { Human, Ghost }
 
 @onready var area2d: Area2D = get_node("Area2D")
 
-var bullet = load("res://Scenes/bullet.tscn")
+@onready var animation_tree = $AnimationTree
+@export var starting_direction : Vector2 = Vector2(0, 0.5)
+@onready var state_machine = animation_tree.get('parameters/playback')
 
-var rifu = max_life
+var bullet = load("res://Scenes/bullet.tscn")
 
 var last_normalized_direction: Vector2 = Vector2.RIGHT
 var direction: Vector2
@@ -42,6 +44,7 @@ func _ready():
 	player2 = get_node("../PlayerGhost") 
 	connect("health_updated", get_parent().get_node("Life/UI/Life").on_player_life_change)
 	emit_signal("health_updated", max_life)
+	update_animation_parameters(starting_direction)
 
 func _process(delta):
 	direction = get_direction()
@@ -55,6 +58,7 @@ func _process(delta):
 		new_bullet.position = position
 		new_bullet.bullet_owner = self
 		get_tree().root.add_child(new_bullet)
+	
 
 func damage(amount):
 	if invulnerability_timer.is_stopped():
@@ -65,7 +69,9 @@ func damage(amount):
 
 func _physics_process(delta):
 	velocity = direction * speed
+	update_animation_parameters(velocity)
 	move_and_slide()
+	pick_new_state()
 
 func _on_monster_detector_body_entered(body):
 	damage(1)
@@ -85,3 +91,14 @@ func _on_immunity_timer_timeout():
 func _on_killed():
 	effects_animations.play("death")
 	get_tree().reload_current_scene()
+
+func update_animation_parameters(move_input : Vector2):
+	if (move_input != Vector2.ZERO):
+		animation_tree.set("parameters/Idle/blend_position", move_input)
+		animation_tree.set("parameters/Walk/blend_position", move_input)
+	
+func pick_new_state():
+	if (velocity != Vector2.ZERO):
+		state_machine.travel("Walk")
+	else: 
+		state_machine.travel("Idle")
