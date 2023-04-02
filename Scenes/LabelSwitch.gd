@@ -11,4 +11,3 @@ func _process(delta):
 			labels[current_label].visible = true
 		else:
 			queue_free()
-		
