@@ -535,7 +535,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("5_ck0pn")
 flip_h = true
 hframes = 48
-frame = 1
+frame = 3
 
 [node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
@@ -585,7 +585,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("7_35m07")
 flip_h = true
 hframes = 48
-frame = 1
+frame = 3
 
 [node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
