@@ -384,9 +384,10 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_mfxln"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="PlayerHuman" type="CharacterBody2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(319, 278)
 collision_mask = 20
 motion_mode = 1
@@ -410,7 +411,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("2_fshri")
 flip_h = true
 hframes = 48
-frame = 5
+frame = 6
 
 [node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
@@ -438,6 +439,7 @@ libraries = {
 }
 
 [node name="PlayerGhost" type="CharacterBody2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(800, 285)
 collision_layer = 2
 collision_mask = 8
@@ -460,7 +462,7 @@ scale = Vector2(2.817, 2.817)
 texture = ExtResource("4_i2akr")
 flip_h = true
 hframes = 48
-frame = 5
+frame = 6
 
 [node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
