@@ -6,6 +6,8 @@ var go = false
 @export var monster_type: Player.EPlayer
 var monster_ghost = load("res://Scenes/monster_ghost.tscn")
 
+signal ghost_death()
+
 func _ready():
 	reset_life()
 	if monster_type == Player.EPlayer.Human:
@@ -43,5 +45,7 @@ func _on_killed():
 		area2d.set_collision_mask_value(1, false)
 		area2d.set_collision_mask_value(2, true)
 		new_monster.go = true
-		get_parent().add_child(new_monster) 
+		get_parent().add_child(new_monster)
+	else:
+		emit_signal("ghost_death")
 	queue_free()

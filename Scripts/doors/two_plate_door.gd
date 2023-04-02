@@ -18,7 +18,7 @@ func _on_door_plate_2_body_entered(body):
 
 func should_close():
 	if (nb_body_on_plate_1 == 0 and nb_body_on_plate_2 >= 1) \
-	or (nb_body_on_plate_1 >= 1 and nb_body_on_plate_2 == 1):
+	or (nb_body_on_plate_1 >= 1 and nb_body_on_plate_2 == 0):
 		open = false
 
 func _on_door_plate_body_exited(body):
@@ -29,6 +29,3 @@ func _on_door_plate_2_body_exited(body):
 	nb_body_on_plate_2 -= 1
 	should_close()
 
-
-func _on_second_door_plate_2_body_exited(body):
-	pass # Replace with function body.
