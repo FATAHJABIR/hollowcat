@@ -24,7 +24,7 @@ var player2: Player
 
 @export var life_system: LifeSystem
 
-@onready var sound: AudioStreamPlayer2D = get_parent().get_node("bullet_shot")
+@onready var sound: AudioStreamPlayer2D = get_tree().root.get_child(0).get_node("bullet_shot")
 
 
 func get_direction():

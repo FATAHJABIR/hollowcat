@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://l41q8rjjq8i1"]
+[gd_scene load_steps=48 format=3 uid="uid://l41q8rjjq8i1"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny2e6"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_yg0aj"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="10_4mxcf"]
 [ext_resource type="Script" path="res://Scripts/doors/signal_door.gd" id="10_51cgb"]
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="14_02qnr"]
-[ext_resource type="AudioStream" uid="uid://dabgk6u52omy1" path="res://sound/mixkit-explainer-video-game-alert-sweep-236.wav" id="15_rq7tn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valil"]
 size = Vector2(240, 40)
@@ -444,7 +443,6 @@ gravity_scale = 2.66454e-15
 lock_rotation = true
 freeze = true
 script = ExtResource("7_emi5l")
-speed = 200.0
 open_size = 250.0
 metadata/_edit_group_ = true
 
@@ -486,7 +484,6 @@ gravity_scale = 2.66454e-15
 lock_rotation = true
 freeze = true
 script = ExtResource("10_51cgb")
-speed = 2000.0
 open_size = 250.0
 metadata/_edit_group_ = true
 
@@ -613,11 +610,6 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_71rtg")
 parameters/Idle/blend_position = Vector2(0, 0.062)
 parameters/Walk/blend_position = Vector2(0, 0)
-
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-
-[node name="bullet_shot" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_rq7tn")
 
 [connection signal="body_entered" from="second_door_plate" to="second_door" method="_on_door_plate_body_entered"]
 [connection signal="body_exited" from="second_door_plate" to="second_door" method="_on_door_plate_body_exited"]

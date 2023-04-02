@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://mrnvbaep1y55"]
+[gd_scene load_steps=11 format=3 uid="uid://mrnvbaep1y55"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_4uygf"]
 [ext_resource type="PackedScene" uid="uid://l41q8rjjq8i1" path="res://Scenes/final_level.tscn" id="2_cfkb6"]
 [ext_resource type="Script" path="res://Scripts/lifeSystem.gd" id="3_2v56s"]
 [ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="4_5wcyd"]
 [ext_resource type="Script" path="res://Scenes/LabelSwitch.gd" id="5_7tc34"]
+[ext_resource type="AudioStream" uid="uid://dabgk6u52omy1" path="res://sound/mixkit-explainer-video-game-alert-sweep-236.wav" id="6_y3hj5"]
+[ext_resource type="AudioStream" uid="uid://dffvhsnmjgweb" path="res://sound/Door Scrape Stone Loop - QuickSounds.com.mp3" id="7_kgfkl"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iae4o"]
 
@@ -60,7 +62,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 remote_path = NodePath("../../../Camera2D")
 
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="2"]
-frame = 2
+frame = 1
 
 [node name="AnimationTree" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="5"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iae4o")
@@ -69,7 +71,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iae4o")
 life_system = NodePath("../../../../SubViewportContainer2/SubViewport/LifeSystem/UI/Life")
 
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="1"]
-frame = 2
+frame = 1
 
 [node name="HBoxContainer@SubViewportContainer@SubViewport@Level@Player2@RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="5"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -209,5 +211,13 @@ La touche (O) permet de rentrer dans des objets et tirer (U) permet d'en sortir
 label_settings = SubResource("LabelSettings_yp5ab")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="bullet_shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_y3hj5")
+
+[node name="door_open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_kgfkl")
 
 [editable path="HBoxContainer/SubViewportContainer/SubViewport/Node2D"]

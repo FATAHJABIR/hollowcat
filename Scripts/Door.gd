@@ -2,13 +2,19 @@ extends RigidBody2D
 class_name Door
 
 var open: bool = false
-@export var speed: float = 100
+var last_open: bool = false
+@export var speed: float = 150
 @export var open_size: float = 100
 @onready var start_y: float = position.y
 @onready var close_position: float = position.x
 @onready var open_position: float = position.x + open_size
+@onready var sound: AudioStreamPlayer2D = get_tree().root.get_child(0).get_node("door_open")
 
 func _process(delta):
+	if last_open != open:
+		sound.play()
+	last_open = open
+	
 	position.y = start_y
 	linear_velocity = Vector2.ZERO
 	
