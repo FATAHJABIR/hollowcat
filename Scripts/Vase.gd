@@ -3,6 +3,7 @@ class_name Vase
 
 var player: Player = null
 @export var vase_speed: float
+@onready var sprite: Sprite2D = get_node("Sprite2D")
 
 func _process(delta):
 	if player == null:
