@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://def5v6mcaexcx"]
+[gd_scene load_steps=11 format=3 uid="uid://def5v6mcaexcx"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_7mcfp"]
 [ext_resource type="Texture2D" uid="uid://jtsij57kyjkm" path="res://icon.svg" id="2_cavkf"]
@@ -9,7 +9,95 @@ size = Vector2(121, 125)
 [sub_resource type="CircleShape2D" id="CircleShape2D_darto"]
 radius = 423.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_yuvqn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_gqnvb"]
+resource_name = "Red"
+length = 0.6154
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oulpl"]
+resource_name = "death"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_icqsm"]
+resource_name = "flash"
+length = 0.2054
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wsfca"]
+resource_name = "rest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3856b"]
+_data = {
+"RESET": SubResource("Animation_yuvqn"),
+"Red": SubResource("Animation_gqnvb"),
+"death": SubResource("Animation_oulpl"),
+"flash": SubResource("Animation_icqsm"),
+"rest": SubResource("Animation_wsfca")
+}
+
+[node name="Monster" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_7mcfp")
@@ -30,6 +118,12 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(30.5, 2.5)
 shape = SubResource("CircleShape2D_darto")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "rest"
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
 
 [connection signal="killed" from="." to="." method="_on_killed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -38,7 +38,7 @@ func get_direction():
 func _ready():
 	player1 = get_node("../PlayerHuman")
 	player2 = get_node("../PlayerGhost") 
-	connect("health_updated", get_parent().get_node("Node2D/UI/Life").on_player_life_change)
+	connect("health_updated", get_parent().get_node("Life/UI/Life").on_player_life_change)
 	emit_signal("health_updated", max_life)
 
 func _process(delta):
@@ -51,6 +51,7 @@ func _process(delta):
 		var new_bullet: Bullet = bullet.instantiate()
 		new_bullet.apply_central_impulse(last_normalized_direction * bullet_speed)
 		new_bullet.position = position
+		new_bullet.bullet_owner = self
 		get_tree().root.add_child(new_bullet)
 		
 func damage(amount):

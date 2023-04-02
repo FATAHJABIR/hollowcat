@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="3_n4kc6"]
-[ext_resource type="PackedScene" uid="uid://b0wcww0ghbbep" path="res://Scenes/lifeUI.tscn" id="4_2fo4i"]
+[ext_resource type="PackedScene" path="res://Scenes/lifeUI.tscn" id="4_2fo4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
-size = Vector2(64, 63)
+size = Vector2(64, 63.5)
 
 [sub_resource type="Gradient" id="Gradient_0x00t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -110,6 +110,8 @@ _data = {
 [node name="PlayerHuman" type="CharacterBody2D" parent="."]
 position = Vector2(319, 278)
 collision_mask = 20
+motion_mode = 1
+slide_on_ceiling = false
 script = ExtResource("1_08klv")
 bullet_speed = 1000.0
 speed = 400.0
@@ -133,52 +135,61 @@ shape = SubResource("RectangleShape2D_7trro")
 wait_time = 3.0
 one_shot = true
 
+[node name="Animator" type="AnimationPlayer" parent="PlayerHuman"]
+autoplay = "rest"
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
+
 [node name="PlayerGhost" type="CharacterBody2D" parent="."]
 position = Vector2(800, 285)
 collision_layer = 2
 collision_mask = 8
+motion_mode = 1
+slide_on_ceiling = false
 script = ExtResource("2_u6sgo")
 max_distance_between_players = 500.0
 player = 1
 bullet_speed = 1000.0
 speed = 400.0
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_hjrgk")
-disabled = true
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
 texture = SubResource("GradientTexture2D_k6ldq")
 
 [node name="monsterDetector" type="Area2D" parent="PlayerGhost"]
-position = Vector2(-481, -7)
+position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/monsterDetector"]
-position = Vector2(481, 7)
+position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="PlayerGhost"]
 wait_time = 3.0
 one_shot = true
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_n4kc6")]
-position = Vector2(580, 704)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../PlayerHuman")
+[node name="Animator" type="AnimationPlayer" parent="PlayerGhost"]
 autoplay = "rest"
 libraries = {
 "": SubResource("AnimationLibrary_3856b")
 }
 
-[node name="Node2D" parent="." instance=ExtResource("4_2fo4i")]
+[node name="Monster" parent="." instance=ExtResource("3_n4kc6")]
+position = Vector2(563, 302)
+
+[node name="Life" parent="." instance=ExtResource("4_2fo4i")]
 
 [connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed"]
 [connection signal="body_entered" from="PlayerHuman/monsterDetector" to="PlayerHuman" method="_on_monster_detector_body_entered"]
 [connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout"]
-[connection signal="body_entered" from="PlayerGhost/monsterDetector" to="PlayerHuman" method="_on_monster_detector_body_entered"]
-[connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout"]
+[connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated"]
+[connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed"]
+[connection signal="body_entered" from="PlayerGhost/monsterDetector" to="PlayerGhost" method="_on_monster_detector_body_entered"]
+[connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout"]

@@ -39,5 +39,9 @@ func _on_killed():
 		new_monster.set_collision_mask_value(1, false)
 		new_monster.set_collision_mask_value(5, false)
 		new_monster.set_collision_mask_value(2, true)
+		var area2d = new_monster.get_node("Area2D")
+		area2d.set_collision_mask_value(1, false)
+		area2d.set_collision_mask_value(2, true)
+		new_monster.go = true
 		get_parent().add_child(new_monster) 
 	queue_free()
