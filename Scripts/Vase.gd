@@ -13,6 +13,7 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("attack_2"):
 		player.release_vase()
+		sprite.frame = 1
 		player = null
 		return
 

@@ -41,6 +41,8 @@ func grab_vase(vase: RigidBody2D):
 	transform = vase.transform
 	visible = false
 	vase.player = self
+	if vase is Vase:
+		vase.sprite.frame = 0
 
 func release_vase():
 	is_grabbing_vase = false

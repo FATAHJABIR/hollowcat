@@ -22,6 +22,8 @@ var direction: Vector2
 var player1: Player
 var player2: Player
 
+@export var life_system: LifeSystem
+
 @onready var sound: AudioStreamPlayer2D = get_parent().get_node("bullet_shot")
 
 
@@ -43,7 +45,9 @@ func get_direction():
 func _ready():
 	player1 = get_node("../PlayerHuman")
 	player2 = get_node("../PlayerGhost") 
-	connect("health_updated", get_parent().get_node("Life/UI/Life").on_player_life_change)
+	connect("health_updated", life_system.on_player_life_change)
+	life_system.on_player_life_change(max_life)
+	
 	update_animation_parameters(starting_direction)
 
 func _process(delta):

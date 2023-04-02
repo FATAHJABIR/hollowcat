@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="14_02qnr"]
 [ext_resource type="AudioStream" uid="uid://dabgk6u52omy1" path="res://sound/mixkit-explainer-video-game-alert-sweep-236.wav" id="15_rq7tn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_valil"]
+size = Vector2(240, 40)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(42, 63.5)
 
@@ -404,9 +407,6 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_71rtg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_valil"]
-size = Vector2(240, 40)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -433,109 +433,6 @@ metadata/_edit_group_ = true
 [node name="vase2" parent="." instance=ExtResource("4_t6kuu")]
 position = Vector2(706, -98)
 metadata/_edit_group_ = true
-
-[node name="PlayerHuman" type="CharacterBody2D" parent="."]
-position = Vector2(332, 958)
-collision_mask = 20
-motion_mode = 1
-slide_on_ceiling = false
-script = ExtResource("1_ny2e6")
-player = null
-bullet_speed = 1000.0
-starting_direction = null
-max_life = null
-speed = 400.0
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_hjrgk")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerHuman"]
-position = Vector2(3, 0)
-scale = Vector2(2.817, 2.817)
-texture = ExtResource("5_ck0pn")
-flip_h = true
-hframes = 48
-frame = 7
-
-[node name="Area2D" type="Area2D" parent="PlayerHuman"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman/Area2D"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_7trro")
-
-[node name="immunityTimer" type="Timer" parent="PlayerHuman"]
-wait_time = 3.0
-one_shot = true
-
-[node name="AnimationTree" type="AnimationTree" parent="PlayerHuman"]
-tree_root = SubResource("AnimationNodeStateMachine_sc16q")
-anim_player = NodePath("../Animator")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_p6kl5")
-parameters/Idle/blend_position = Vector2(0, 0.062)
-parameters/Walk/blend_position = Vector2(0, 0)
-
-[node name="Animator" type="AnimationPlayer" parent="PlayerHuman"]
-libraries = {
-"": SubResource("AnimationLibrary_3856b")
-}
-
-[node name="PlayerGhost" type="CharacterBody2D" parent="."]
-position = Vector2(620, 955)
-collision_layer = 2
-collision_mask = 8
-motion_mode = 1
-slide_on_ceiling = false
-script = ExtResource("2_yg0aj")
-max_distance_between_players = 500.0
-player = 1
-bullet_speed = 1000.0
-speed = 400.0
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_hjrgk")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
-scale = Vector2(2.817, 2.817)
-texture = ExtResource("7_35m07")
-flip_h = true
-hframes = 48
-frame = 7
-
-[node name="Area2D" type="Area2D" parent="PlayerGhost"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/Area2D"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_7trro")
-
-[node name="immunityTimer" type="Timer" parent="PlayerGhost"]
-wait_time = 3.0
-one_shot = true
-
-[node name="Animator" type="AnimationPlayer" parent="PlayerGhost"]
-autoplay = "rest"
-libraries = {
-"": SubResource("AnimationLibrary_3856b")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="PlayerGhost"]
-tree_root = SubResource("AnimationNodeStateMachine_sc16q")
-anim_player = NodePath("../Animator")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_71rtg")
-parameters/Idle/blend_position = Vector2(0, 0.062)
-parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="Life" parent="." instance=ExtResource("3_rqoue")]
 
@@ -604,7 +501,6 @@ texture = ExtResource("8_k1v21")
 
 [node name="Monster" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(528, -817)
-speed = 0.0
 
 [node name="Boss" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(537, -2730)
@@ -614,11 +510,109 @@ speed = 2.08165e-12
 
 [node name="Minion1" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(336, -2407)
-speed = 0.0
 
 [node name="Minion2" parent="." instance=ExtResource("10_4mxcf")]
 position = Vector2(796, -2418)
-speed = 0.0
+
+[node name="PlayerHuman" type="CharacterBody2D" parent="."]
+position = Vector2(332, 958)
+collision_mask = 52
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_ny2e6")
+bullet_speed = 1000.0
+speed = 300.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_hjrgk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerHuman"]
+position = Vector2(3, 0)
+scale = Vector2(2.817, 2.817)
+texture = ExtResource("5_ck0pn")
+flip_h = true
+hframes = 48
+frame = 1
+
+[node name="Area2D" type="Area2D" parent="PlayerHuman"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman/Area2D"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_7trro")
+
+[node name="immunityTimer" type="Timer" parent="PlayerHuman"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerHuman"]
+tree_root = SubResource("AnimationNodeStateMachine_sc16q")
+anim_player = NodePath("../Animator")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_p6kl5")
+parameters/Idle/blend_position = Vector2(0, 0.062)
+parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="Animator" type="AnimationPlayer" parent="PlayerHuman"]
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
+
+[node name="PlayerGhost" type="CharacterBody2D" parent="."]
+position = Vector2(620, 955)
+collision_layer = 2
+collision_mask = 8
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("2_yg0aj")
+max_distance_between_players = 300.0
+player = 1
+bullet_speed = 1000.0
+speed = 300.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost"]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_hjrgk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
+scale = Vector2(2.817, 2.817)
+texture = ExtResource("7_35m07")
+flip_h = true
+hframes = 48
+frame = 1
+
+[node name="Area2D" type="Area2D" parent="PlayerGhost"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 0
+collision_mask = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/Area2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_7trro")
+
+[node name="immunityTimer" type="Timer" parent="PlayerGhost"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Animator" type="AnimationPlayer" parent="PlayerGhost"]
+autoplay = "rest"
+libraries = {
+"": SubResource("AnimationLibrary_3856b")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerGhost"]
+tree_root = SubResource("AnimationNodeStateMachine_sc16q")
+anim_player = NodePath("../Animator")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_71rtg")
+parameters/Idle/blend_position = Vector2(0, 0.062)
+parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -633,10 +627,13 @@ stream = ExtResource("15_rq7tn")
 [connection signal="body_exited" from="first_door_plate" to="first_door" method="_on_door_plate_body_exited"]
 [connection signal="body_entered" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_entered"]
 [connection signal="body_exited" from="first_door_plate2" to="first_door" method="_on_door_plate_2_body_exited"]
+[connection signal="killed" from="Monster" to="monster_door" method="_on_signal"]
 [connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed" flags=18]
 [connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered" flags=18]
 [connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout" flags=18]
 [connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated" flags=18]
 [connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed" flags=18]
 [connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered" flags=18]
+[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout" flags=18]

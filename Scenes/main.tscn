@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mrnvbaep1y55"]
+[gd_scene load_steps=7 format=3 uid="uid://mrnvbaep1y55"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_4uygf"]
 [ext_resource type="PackedScene" uid="uid://l41q8rjjq8i1" path="res://Scenes/final_level.tscn" id="2_cfkb6"]
+[ext_resource type="Script" path="res://Scripts/lifeSystem.gd" id="3_2v56s"]
+[ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="4_5wcyd"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iae4o"]
 
@@ -38,18 +40,28 @@ position = Vector2(332, 958)
 
 [node name="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_cfkb6")]
 
+[node name="first_door" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D" index="8"]
+speed = null
+open_size = null
+
+[node name="PlayerHuman" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D" index="15" node_paths=PackedStringArray("life_system")]
+life_system = NodePath("../../LifeSystem/UI/Life")
+
 [node name="HBoxContainer@SubViewportContainer@SubViewport@Level@Player1@RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="0"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 remote_path = NodePath("../../../Camera2D")
 
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="2"]
-frame = 3
+frame = 2
 
 [node name="AnimationTree" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerHuman" index="5"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iae4o")
 
+[node name="PlayerGhost" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D" index="16" node_paths=PackedStringArray("life_system")]
+life_system = NodePath("../../../../SubViewportContainer2/SubViewport/LifeSystem/UI/Life")
+
 [node name="Sprite2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="1"]
-frame = 3
+frame = 2
 
 [node name="HBoxContainer@SubViewportContainer@SubViewport@Level@Player2@RemoteTransform2D" type="RemoteTransform2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="5"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -58,9 +70,24 @@ remote_path = NodePath("../../../../../SubViewportContainer2/SubViewport/Camera2
 [node name="AnimationTree" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D/PlayerGhost" index="6"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ek8ma")
 
-[node name="first_door" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D" index="10"]
-speed = null
-open_size = null
+[node name="LifeSystem" type="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+
+[node name="UI" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer/SubViewport/LifeSystem"]
+
+[node name="Life" type="Control" parent="HBoxContainer/SubViewportContainer/SubViewport/LifeSystem/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_2v56s")
+
+[node name="Hearts" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/LifeSystem/UI/Life"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_5wcyd")
+expand_mode = 2
+stretch_mode = 1
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -73,5 +100,24 @@ render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer2/SubViewport"]
 position = Vector2(620, 955)
+
+[node name="LifeSystem" type="Node2D" parent="HBoxContainer/SubViewportContainer2/SubViewport"]
+
+[node name="UI" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer2/SubViewport/LifeSystem"]
+
+[node name="Life" type="Control" parent="HBoxContainer/SubViewportContainer2/SubViewport/LifeSystem/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_2v56s")
+
+[node name="Hearts" type="TextureRect" parent="HBoxContainer/SubViewportContainer2/SubViewport/LifeSystem/UI/Life"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_5wcyd")
+expand_mode = 2
+stretch_mode = 1
 
 [editable path="HBoxContainer/SubViewportContainer/SubViewport/Node2D"]
