@@ -7,10 +7,12 @@ var player: Player = null
 func _process(delta):
 	if player == null:
 		return
+	
+	player.transform = transform
 		
-	if Input.is_action_just_pressed("active_2"):
+	if Input.is_action_just_pressed("attack_2"):
 		player.release_vase()
 		player = null
 		return
 
-	apply_impulse(player.get_direction() * vase_speed)
+	linear_velocity = player.get_direction() * vase_speed

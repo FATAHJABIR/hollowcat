@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3rfno2iiepm3" path="res://Assets/PlayerSpriteSheet.png" id="2_fshri"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="3_n4kc6"]
-[ext_resource type="PackedScene" uid="uid://reqfdtpe16nh" path="res://Assets/lifeUI.tscn" id="4_2fo4i"]
-[ext_resource type="Texture2D" uid="uid://vgp6irqxde53" path="res://Assets/GhostSpriteSheet.png" id="4_i2akr"]
+[ext_resource type="PackedScene" path="res://Scenes/lifeUI.tscn" id="4_2fo4i"]
 [ext_resource type="PackedScene" uid="uid://n24ea2abms38" path="res://Scenes/vase.tscn" id="4_tcpip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
