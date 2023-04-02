@@ -7,6 +7,8 @@ enum EPlayer { Human, Ghost }
 @export var player: EPlayer
 @export var bullet_speed: float
 
+@onready var area2d: Area2D = get_node("Area2D")
+
 var bullet = load("res://Scenes/bullet.tscn")
 
 var rifu = max_life
@@ -53,7 +55,7 @@ func _process(delta):
 		new_bullet.position = position
 		new_bullet.bullet_owner = self
 		get_tree().root.add_child(new_bullet)
-		
+
 func damage(amount):
 	if invulnerability_timer.is_stopped():
 		effects_animations.play("Red")
@@ -69,7 +71,12 @@ func _on_monster_detector_body_entered(body):
 	damage(1)
 
 func _on_immunity_timer_timeout():
-	if get_node("monsterDetector").has_overlapping_bodies():
+	var is_reattacked: bool = false
+	for body in area2d.get_overlapping_bodies():
+		if body is Monster:
+			is_reattacked = true
+	
+	if is_reattacked:
 		damage(1)
 	else:
 		effects_animations.play("rest")

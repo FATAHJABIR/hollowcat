@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://n24ea2abms38"]
+
+[ext_resource type="Script" path="res://Scripts/Vase.gd" id="1_co616"]
+[ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="2_xw3yl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tn6we"]
+radius = 18.0
+
+[node name="vase" type="RigidBody2D"]
+script = ExtResource("1_co616")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tn6we")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xw3yl")

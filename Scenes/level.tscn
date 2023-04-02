@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dcgknl1nk1213"]
+[gd_scene load_steps=16 format=3 uid="uid://dcgknl1nk1213"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_08klv"]
 [ext_resource type="Script" path="res://Scripts/PlayerGhost.gd" id="2_u6sgo"]
 [ext_resource type="PackedScene" uid="uid://def5v6mcaexcx" path="res://Scenes/monster.tscn" id="3_n4kc6"]
 [ext_resource type="PackedScene" path="res://Scenes/lifeUI.tscn" id="4_2fo4i"]
+[ext_resource type="PackedScene" uid="uid://n24ea2abms38" path="res://Scenes/vase.tscn" id="4_tcpip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjrgk"]
 size = Vector2(64, 63.5)
@@ -124,11 +125,11 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="PlayerHuman"]
 texture = SubResource("GradientTexture2D_k6ldq")
 
-[node name="monsterDetector" type="Area2D" parent="PlayerHuman"]
+[node name="Area2D" type="Area2D" parent="PlayerHuman"]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman/monsterDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHuman/Area2D"]
 shape = SubResource("RectangleShape2D_7trro")
 
 [node name="immunityTimer" type="Timer" parent="PlayerHuman"]
@@ -162,12 +163,12 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="PlayerGhost"]
 texture = SubResource("GradientTexture2D_k6ldq")
 
-[node name="monsterDetector" type="Area2D" parent="PlayerGhost"]
+[node name="Area2D" type="Area2D" parent="PlayerGhost"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/monsterDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGhost/Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_7trro")
 
@@ -181,15 +182,19 @@ libraries = {
 "": SubResource("AnimationLibrary_3856b")
 }
 
-[node name="Monster" parent="." instance=ExtResource("3_n4kc6")]
-position = Vector2(563, 302)
-
 [node name="Life" parent="." instance=ExtResource("4_2fo4i")]
 
+[node name="vase" parent="." instance=ExtResource("4_tcpip")]
+position = Vector2(201, 153)
+metadata/_edit_group_ = true
+
+[node name="Monster" parent="." instance=ExtResource("3_n4kc6")]
+position = Vector2(579, 151)
+
 [connection signal="killed" from="PlayerHuman" to="PlayerHuman" method="_on_killed"]
-[connection signal="body_entered" from="PlayerHuman/monsterDetector" to="PlayerHuman" method="_on_monster_detector_body_entered"]
+[connection signal="body_entered" from="PlayerHuman/Area2D" to="PlayerHuman" method="_on_monster_detector_body_entered"]
 [connection signal="timeout" from="PlayerHuman/immunityTimer" to="PlayerHuman" method="_on_immunity_timer_timeout"]
 [connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated"]
 [connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed"]
-[connection signal="body_entered" from="PlayerGhost/monsterDetector" to="PlayerGhost" method="_on_monster_detector_body_entered"]
+[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered"]
 [connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout"]
