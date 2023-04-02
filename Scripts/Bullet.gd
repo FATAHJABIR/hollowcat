@@ -12,5 +12,8 @@ func _ready():
 			area2d.set_collision_mask_value(4, true)
 
 func _on_area_2d_body_entered(body):
+	if not body is Body:
+		return
+	
 	body.damage(1)
 	queue_free()
