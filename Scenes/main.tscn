@@ -31,11 +31,10 @@ size_flags_horizontal = 3
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1500, 2000)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
-position = Vector2(341, 937)
+position = Vector2(621, 956)
 
 [node name="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_cfkb6")]
 
@@ -64,10 +63,9 @@ size_flags_horizontal = 3
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1500, 2000)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer2/SubViewport"]
-position = Vector2(635, 940)
+position = Vector2(377, 959)
 
 [editable path="HBoxContainer/SubViewportContainer/SubViewport/Node2D"]

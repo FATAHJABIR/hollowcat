@@ -45,6 +45,11 @@ func _on_killed():
 		area2d.set_collision_mask_value(1, false)
 		area2d.set_collision_mask_value(2, true)
 		new_monster.go = true
+		
+		for signal_name in get_signal_list():
+			for connecttion in get_signal_connection_list(signal_name["name"]):
+				new_monster.connect(signal_name["name"], connecttion["callable"])
+		
 		get_parent().add_child(new_monster)
 	else:
 		emit_signal("ghost_death")
