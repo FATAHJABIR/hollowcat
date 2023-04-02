@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://n24ea2abms38"]
 
 [ext_resource type="Script" path="res://Scripts/Vase.gd" id="1_co616"]
-[ext_resource type="Texture2D" uid="uid://ico52j1o8y8n" path="res://Assets/dungeon_tiles.png" id="2_asxr1"]
+[ext_resource type="Texture2D" uid="uid://di4aqlyudvwbo" path="res://Assets/Pixilart Sprite Sheet.png" id="2_m74we"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn6we"]
-radius = 38.0526
+radius = 23.0
 
 [sub_resource type="Animation" id="Animation_nolip"]
 resource_name = "highlight"
@@ -25,14 +25,16 @@ vase_speed = 200.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tn6we")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1.5, 1.90735e-06)
-scale = Vector2(4.5, 4.33333)
-texture = ExtResource("2_asxr1")
-region_enabled = true
-region_rect = Rect2(195, 108, 14, 18)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2.5625, 2.47917)
+texture = ExtResource("2_m74we")
+hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_u31b2")
 }
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

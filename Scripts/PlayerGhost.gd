@@ -45,3 +45,13 @@ func grab_vase(vase: RigidBody2D):
 func release_vase():
 	is_grabbing_vase = false
 	visible = true
+
+
+func _on_area_2d_body_entered(body):
+	if body is Vase:
+		body.sprite.frame = 1
+
+
+func _on_area_2d_body_exited(body):
+	if body is Vase:
+		body.sprite.frame = 0

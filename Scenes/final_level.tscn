@@ -644,6 +644,8 @@ stream = ExtResource("15_rq7tn")
 [connection signal="health_updated" from="PlayerGhost" to="PlayerGhost" method="_on_health_updated"]
 [connection signal="killed" from="PlayerGhost" to="PlayerGhost" method="_on_killed"]
 [connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_monster_detector_body_entered"]
+[connection signal="body_entered" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PlayerGhost/Area2D" to="PlayerGhost" method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="PlayerGhost/immunityTimer" to="PlayerGhost" method="_on_immunity_timer_timeout"]
 [connection signal="ghost_death" from="Monster" to="monster_door" method="_on_signal"]
 [connection signal="ghost_death" from="Minion1" to="Boss" method="_on_monster_death"]
