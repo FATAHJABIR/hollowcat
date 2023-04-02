@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://mrnvbaep1y55"]
+[gd_scene load_steps=9 format=3 uid="uid://mrnvbaep1y55"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_4uygf"]
 [ext_resource type="PackedScene" uid="uid://l41q8rjjq8i1" path="res://Scenes/final_level.tscn" id="2_cfkb6"]
 [ext_resource type="Script" path="res://Scripts/lifeSystem.gd" id="3_2v56s"]
 [ext_resource type="Texture2D" uid="uid://mxcygbau7as4" path="res://Assets/heart.png" id="4_5wcyd"]
+[ext_resource type="Script" path="res://Scenes/LabelSwitch.gd" id="5_7tc34"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iae4o"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ek8ma"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yp5ab"]
+font_size = 35
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -125,5 +129,85 @@ offset_bottom = 40.0
 texture = ExtResource("4_5wcyd")
 expand_mode = 2
 stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = -200.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_7tc34")
+
+[node name="Label1" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tom est un jeune chat qui a toujours été de nature sadique.
+Sa soeur quand à elle est de bonne nature
+et enchante tous ceux qui font sa connaissance.
+La jalousie commença un jour à s'imprimer sur le coeur de Tom. 
+
+Un bon jour de printemps, sa soeur oublie de faire le petit déjeuner.
+Il commet alors l'impardonnable.
+Il dévore sa soeur pour le petit déjeuner.
+
+<Appuyez sur (ESPACE) pour continuer>"
+label_settings = SubResource("LabelSettings_yp5ab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Prit de regrets, il essaie tout pour ramener sa soeur, en vain.
+Des démons prennent connaissance de cette histoire,
+et décident de jouer un tour à Tom.
+
+Ils lui promettent de lui rendre sa soeur.
+C'était en fait un piège, qu'ils lui tendent pour l'enfermer dans leur donjon. 
+
+Ils ne se doutent pas que sa tendre soeur était resté veiller sur lui tout ce temps.
+C'est donc que les deux tentent de s'échapper...
+
+<Appuyez sur (ESPACE) pour continuer>"
+label_settings = SubResource("LabelSettings_yp5ab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Des manettes sont fortements conseillées pour jouer
+(même si leur fonctionnalité n'a pu être testé)
+Le joystick gauche permet le déplacement et les bouttons droits et bas permettent
+d'utiliser les actions
+
+Si vous n'avez pas de manette, vous pouvez deplacer Tom et sa soeur en utilisant
+respictevement (ZQSD ou WASD) et (IJKL).
+Les touches (A ou Q) et U sont faites pour tirer.
+La touche (O) permet de rentrer dans des objets et tirer (U) permet d'en sortir
+
+<Appuyez sur (ESPACE) pour jouer>"
+label_settings = SubResource("LabelSettings_yp5ab")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="HBoxContainer/SubViewportContainer/SubViewport/Node2D"]
